@@ -1,5 +1,7 @@
 <template>
   <AddUser />
+  <UpdateUser />
+  <DeleteUser />
   <div class="filter">
     <label>Filter:</label>
     <select v-model="filterTable">
@@ -26,17 +28,24 @@
       </tr>
     </table>
   </div>
+
+  <div class="pagination">
+    <label>Go to: </label>
+    <Pagination :userPerPage="userPerPage" :currentPage="currentPage" />
+  </div>
 </template>
 
 <script>
 import { ref,computed, watch } from '@vue/runtime-core'
 import {useStore } from 'vuex'
 import AddUser from '../components/AddUser.vue'
+import UpdateUser from '../components/UpdateUser.vue'
+import DeleteUser from '../components/DeleteUser.vue'
 export default {
 
 name: 'Users',
 
-components:{AddUser},
+components:{AddUser, UpdateUser, DeleteUser},
 
 setup(){
   const store = useStore()
