@@ -9,7 +9,7 @@ export default {
   setup() {
     const store = useStore()
     const totalUsers =  computed(()=>store.getters.totalUsers)
-    console.log('totaluser:',totalUsers)
+    
     return{}
   }
 }
