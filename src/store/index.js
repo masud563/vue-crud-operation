@@ -9,6 +9,7 @@ export default createStore({
   getters: {
     totalUsers: (state) =>{
       return state.users.length
+      console.log(state.users.length)
     }
   },
 

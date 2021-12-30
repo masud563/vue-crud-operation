@@ -29,10 +29,7 @@
     </table>
   </div>
 
-  <div class="pagination">
-    <label>Go to: </label>
-    <Pagination  />
-  </div>
+  <Pagination  />
 </template>
 
 <script>
