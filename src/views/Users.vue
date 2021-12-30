@@ -31,47 +31,48 @@
 
   <div class="pagination">
     <label>Go to: </label>
-    <Pagination :userPerPage="userPerPage" :currentPage="currentPage" />
+    <Pagination  />
   </div>
 </template>
 
 <script>
-import { ref,computed, watch } from '@vue/runtime-core'
-import {useStore } from 'vuex'
-import AddUser from '../components/AddUser.vue'
-import UpdateUser from '../components/UpdateUser.vue'
-import DeleteUser from '../components/DeleteUser.vue'
-export default {
+  import { ref,computed, watch } from '@vue/runtime-core'
+  import {useStore } from 'vuex'
+  import AddUser from '../components/AddUser.vue'
+  import UpdateUser from '../components/UpdateUser.vue'
+  import DeleteUser from '../components/DeleteUser.vue'
+  import Pagination from '../components/Pagination.vue'
+  export default {
 
-name: 'Users',
+  name: 'Users',
 
-components:{AddUser, UpdateUser, DeleteUser},
+  components:{AddUser, UpdateUser, DeleteUser, Pagination},
 
-setup(){
-  const store = useStore()
- 
-  store.dispatch('fetchUsers')
-
-  const users = computed(()=>store.state.users)
-
-  const filterTable = ref('fullDetails')
-  const showAll = ref(true)
-  const isNameOnly = ref(true)
-  const isEmailOnly = ref(true)
-  const isUserNameOnly = ref(true)
-  watch(filterTable,()=>{
-    showAll.value = filterTable.value === 'fullDetails'
-
-   isNameOnly.value = filterTable.value === 'name'
+  setup(){
+    const store = useStore()
   
-    isEmailOnly.value = filterTable.value === 'email'
-  
-    isUserNameOnly.value = filterTable.value === 'userName'
-  })
+    store.dispatch('fetchUsers')
 
-  
-  return {users, filterTable, showAll, isNameOnly, isEmailOnly, isUserNameOnly}
-}
+    const users = computed(()=>store.state.users)
+
+    const filterTable = ref('fullDetails')
+    const showAll = ref(true)
+    const isNameOnly = ref(true)
+    const isEmailOnly = ref(true)
+    const isUserNameOnly = ref(true)
+    watch(filterTable,()=>{
+      showAll.value = filterTable.value === 'fullDetails'
+
+    isNameOnly.value = filterTable.value === 'name'
+    
+      isEmailOnly.value = filterTable.value === 'email'
+    
+      isUserNameOnly.value = filterTable.value === 'userName'
+    })
+
+    
+    return {users, filterTable, showAll, isNameOnly, isEmailOnly, isUserNameOnly}
+  }
 }
 </script>
 
